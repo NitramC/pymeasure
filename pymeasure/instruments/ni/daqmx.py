@@ -30,7 +30,7 @@ import ctypes
 import numpy as np
 from sys import platform
 
-from pymeasure.adapters import NIAdpater
+from pymeasure.adapters import NIAdapter
 from pymeasure.instruments import Instrument
 
 log = logging.getLogger(__name__)
@@ -69,8 +69,9 @@ class DAQmx(Instrument):
     """
 
     def __init__(self, name="Dev1", **kwargs):
+        self.adapter = NIAdapter(name)
         super().__init__(
-            adapter=NIAdpater,
+            adapter=self.adapter,
             name=name,
             **kwargs
         )

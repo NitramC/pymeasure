@@ -47,3 +47,8 @@ try:
     from pymeasure.adapters.vxi11 import VXI11Adapter
 except ImportError:
     log.warning("VXI-11 library could not be loaded")
+
+try:
+    from pymeasure.adapters.ni import NIAdapter
+except ImportError:
+    log.warning("NI library could not be loaded")

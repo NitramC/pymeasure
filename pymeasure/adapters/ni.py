@@ -26,7 +26,6 @@ import nidaqmx
 import re
 
 import logging
-from warnings import warn
 
 from .adapter import Adapter
 from .protocol import ProtocolAdapter
@@ -67,10 +66,10 @@ class NIAdapter(Adapter):
 
         self.name = name
         self.system = nidaqmx.system.System()
-        self.dev_name = self.search_for_dev_name()
+        self.dev_name = self._search_for_dev_name()
         self.connection = nidaqmx.system.Device(self.dev_name)
 
-    def search_for_dev_name(self):
+    def _search_for_dev_name(self):
         """Search for ``name`` in all connected devices.
 
         :param name: An NI DAQ device name (e.g. 'Dev1'), model number
@@ -79,7 +78,7 @@ class NIAdapter(Adapter):
         :returns: The NI DAQ device name or raises a ValueError if the resource is not found.
         """
         dev_names = self.system.devices.device_names
-        re_pattern = re.compile(self.device_name, re.IGNORECASE)
+        re_pattern = re.compile(self.name, re.IGNORECASE)
         for dev_name in dev_names:
             dev = nidaqmx.system.Device(dev_name)
             if re.search(re_pattern, dev.name):
