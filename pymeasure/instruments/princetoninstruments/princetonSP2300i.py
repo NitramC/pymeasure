@@ -52,10 +52,10 @@ ureg = UnitRegistry()
 RAD_TO_COUNTS = 4_608_000/(2*np.pi)  # [counts/rad]
 
 # MONO_ANGLE_Dv is the monochromator included angle. D_v = (beta - alpha).
-# Approximate value from DIY measurement. See:
+# Value from EESTATUS. See:
 # https://www.horiba.com/int/scientific/technologies/
 # diffraction-gratings/diffraction-gratings-ruled-and-holographic/
-MONO_ANGLE_Dv = 0.5432  # [rad]
+MONO_ANGLE_Dv = np.deg2rad(2*15.20)  # 0.5432 [rad]
 
 
 class PrincetonSP2300i(Instrument):
