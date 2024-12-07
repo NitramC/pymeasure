@@ -2,7 +2,7 @@ import time
 from pymeasure.instruments import Instrument
 
 
-class PS1032(Instrument):
+class PS10(Instrument):
     """
     Driver for the PS 10-32 Position Control Unit.
     Supports basic setup, querying status, and controlling motion.
